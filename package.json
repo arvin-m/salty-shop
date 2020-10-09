@@ -1,0 +1,22 @@
+{
+  "name": "salty-shop",
+  "version": "1.0.0",
+  "description": "MERN stack shopping platform",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arvin-m/salty-shop.git"
+  },
+  "author": "Arvin Mahmoudi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arvin-m/salty-shop/issues"
+  },
+  "homepage": "https://github.com/arvin-m/salty-shop#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
