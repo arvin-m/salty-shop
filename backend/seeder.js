@@ -10,12 +10,47 @@ import connectDB from './config/db.js'
 
 dotenv.config()
 connectDB()
+
 const importData = async () => {
     try {
         await Order.deleteMany()
         await Product.deleteMany()
         await User.deleteMany()
+
+       const createdUsers = await User.insertMany(users)
+       const adminUser = createdUsers[0]._id
+       const sampleProducts = products.map(product =>{
+           return {...product, user: adminUser}
+       })
+       await Product.insertMany(sampleProducts)
+       console.log('Data Imported Successfully!'.green.inverse)
+       process.exit()
     } catch (error) {
-        console.log()
+        console.error(`${error} `.red.bold)
+        process.exit(1)
     }
+}
+
+const destroyData = async () => {
+    try {
+        await Order.deleteMany()
+        await Product.deleteMany()
+        await User.deleteMany()
+
+       
+       console.log('Data Destroyed successfully!'.red.inverse)
+       process.exit()
+    } catch (error) {
+        console.error(`${error} `.red.bold.inverse)
+        process.exit(1)
+    }
+}
+
+// adding flag to the seeder to choose between adding data or deleting data in the CLI
+if(process.argv[2] === '-d'){
+    // node seeder.js -d
+    destroyData()
+} else {
+    //npm run data:import
+    importData()
 }
