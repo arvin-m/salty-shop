@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { propTypes } from 'react-bootstrap/esm/Image';
+import { propTypes } from 'react';
 
 const Rating = ({ value, text, color }) => {
     return (
