@@ -7,8 +7,8 @@ import asyncHandler from 'express-async-handler'
 // @access Public
 const getProducts = asyncHandler(async (req, res) => {
 
-    const product = await Product.find({})
-    res.json(product)
+    const products = await Product.find({})
+    res.json(products)
 
 })
 
@@ -28,4 +28,4 @@ const getProductById = asyncHandler(async (req, res) => {
 
 })
 
-export{getProducts,getProductById}
+export { getProducts, getProductById }
