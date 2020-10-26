@@ -56,6 +56,7 @@ const CartScreen = ({ match, location, history }) => {
                                     <Col md={2}>
                                         <Button type='button' variant='light' onClick={() => removeFromCartHandler(item.product)}>
                                             <i className='fas fa-trash'></i>
+                                            
                                         </Button>
                                     </Col>
 
@@ -74,7 +75,7 @@ const CartScreen = ({ match, location, history }) => {
                             ${cartItems.reduce((acc,item)=> acc + item.qty * item.price , 0).toFixed(2)}
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            <Button type='button' className='btn-block' disabled={cartItems.length === 0} onClick={checkoutHandler}></Button>
+                            <Button type='button' className='btn-block' disabled={cartItems.length === 0} onClick={checkoutHandler}>Proceed To Checkout</Button>
                         </ListGroup.Item>
                     </ListGroup>
                 </Card>
