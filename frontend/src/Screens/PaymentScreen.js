@@ -8,6 +8,7 @@ import CheckoutSteps from '../Components/CheckoutSteps'
 const PaymentScreen = ({ history }) => {
     const cart = useSelector(state => state.cart)
     const { shippingAddress } = cart
+
     if (!shippingAddress) {
         history.push('/shipping')
     }
@@ -21,7 +22,7 @@ const PaymentScreen = ({ history }) => {
     const submitHandler = (e) => {
         e.preventDefault()
 
-        dispatch(savePaymentMethod({ paymentMethod }))
+        dispatch(savePaymentMethod(paymentMethod))
         history.push('/placeorder')
     }
 
