@@ -9,7 +9,7 @@ import { getUserDetails, updateUser } from '../actions/userActions'
 import {USER_UPDATE_RESET} from '../constants/userConstant'
 
 
-const UserEditScreen = ({ location, history }) => {
+const UserEditScreen = ({ match, history }) => {
 
     const userId = match.params.id
 
@@ -22,15 +22,15 @@ const UserEditScreen = ({ location, history }) => {
     const userDetails = useSelector(state => state.userRegister)
     const { loading, error, user } = userDetails
 
-    const userUpdate = useSelector(state => state.userRegister)
-    const { loading:loadingUpdate, error:errorUpdate, success:successUpdate } = userDetails
+    const userUpdate = useSelector(state => state.userUpdate)
+    const { loading:loadingUpdate, error:errorUpdate, success:successUpdate } = userUpdate
 
     useEffect(() => {
 
         if(successUpdate){
             dispatch({type:USER_UPDATE_RESET})
             history.push('/admin/userlist')
-        }esle{
+        }else{
             if(!user.name || user._id !== userId){
                 dispatch(getUserDetails(userId))
     
