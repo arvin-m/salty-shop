@@ -176,10 +176,11 @@ export const listUsers = () => async (dispatch, getState) => {
       }
   
       const { data } = await axios.get(`/api/users`, config)
+      console.log("DATA FROM ACTION",data)
   
       dispatch({
         type: USER_LIST_SUCCESS,
-        payload: data,
+        payload: data
       })
     } catch (error) {
       dispatch({

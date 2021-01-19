@@ -12,7 +12,7 @@ const UserListScreen = ({history}) => {
  
     const userList = useSelector((state) => state.userList)
     const { loading, error, users } = userList
-    console.log("userList ::",userList)
+    console.log("userList-->> ",userList)
 
     const userLogin = useSelector((state) => state.userLogin)
     const {userInfo } = userLogin
