@@ -6,8 +6,16 @@ import asyncHandler from 'express-async-handler'
 // @route GET /api/products
 // @access Public
 const getProducts = asyncHandler(async (req, res) => {
+    const keyword= req.query.keyword ? {
+      // using regex to get even similar product name that == keyword,otherwise we have to put the exact name to get th eproduct in search
+      name :{
+        $regex : req.query.keyword,
+        $options : 'i' // to be case insensetive
+      }
 
-    const products = await Product.find({})
+    } : {} // or the key word will be empty
+
+    const products = await Product.find({ ...keyword })
     res.json(products)
 
 })
