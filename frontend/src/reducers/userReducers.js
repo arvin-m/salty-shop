@@ -28,7 +28,7 @@ import {
 export const userLoginReducer = (state = {}, action) => {
     switch (action.type) {
         case USER_LOGIN_REQUEST:
-            return { loadig: true }
+            return { loading: true }
         case USER_LOGIN_SUCCESS:
             return { loading: false, userInfo: action.payload }
         case USER_LOGIN_FAIL:
@@ -45,7 +45,7 @@ export const userLoginReducer = (state = {}, action) => {
 export const userRegisterReducer = (state = {}, action) => {
     switch (action.type) {
         case USER_REGISTER_REQUEST:
-            return { loadig: true }
+            return { loading: true }
         case USER_REGISTER_SUCCESS:
             return { loading: false, userInfo: action.payload }
         case USER_REGISTER_FAIL:
@@ -61,7 +61,7 @@ export const userRegisterReducer = (state = {}, action) => {
 export const userDetailsReducer = (state = { user: {} }, action) => {
     switch (action.type) {
         case USER_DETAILS_REQUEST:
-            return { ...state, loadig: true }
+            return { ...state, loading: true }
         case USER_DETAILS_SUCCESS:
             return { loading: false, user: action.payload }
         case USER_DETAILS_FAIL:
@@ -79,7 +79,7 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
 export const userUpdateProfileReducer = (state = { }, action) => {
     switch (action.type) {
         case USER_UPDATE_PROFILE_REQUEST:
-            return {loadig: true }
+            return {loading: true }
         case USER_UPDATE_PROFILE_SUCCESS:
             return { loading: false,success:true, userInfo: action.payload }
         case USER_UPDATE_PROFILE_FAIL:
@@ -95,7 +95,7 @@ export const userUpdateProfileReducer = (state = { }, action) => {
 export const userListReducer = (state = {users: [] }, action) => {
     switch (action.type) {
         case USER_LIST_REQUEST:
-            return {loadig: true }
+            return {loading: true }
         case USER_LIST_SUCCESS:
             return { loading: false, users: action.payload }
         case USER_LIST_FAIL:
@@ -113,7 +113,7 @@ export const userListReducer = (state = {users: [] }, action) => {
 export const userDeleteReducer = (state = {users: [] }, action) => {
     switch (action.type) {
         case USER_DELETE_REQUEST:
-            return {loadig: true }
+            return {loading: true }
         case USER_DELETE_SUCCESS:
             return { loading: false,success:true }
         case USER_DELETE_FAIL:
@@ -126,20 +126,19 @@ export const userDeleteReducer = (state = {users: [] }, action) => {
 
 }
 
-export const userUpdateReducer = (state = {users: {} }, action) => {
+export const userUpdateReducer = (state = { user: {} }, action) => {
     switch (action.type) {
-        case USER_UPDATE_REQUEST:
-            return {loadig: true }
-        case USER_UPDATE_SUCCESS:
-            return { loading: false,success:true }
-        case USER_UPDATE_FAIL:
-            return { loading: false, error: action.payload }
-        case USER_UPDATE_RESET:
-            return { user:{} }
-       
-        default:
-            return state
-
+      case USER_UPDATE_REQUEST:
+        return { loading: true }
+      case USER_UPDATE_SUCCESS:
+        return { loading: false, success: true }
+      case USER_UPDATE_FAIL:
+        return { loading: false, error: action.payload }
+      case USER_UPDATE_RESET:
+        return {
+          user: {},
+        }
+      default:
+        return state
     }
-
-}
+  }
