@@ -21,12 +21,6 @@ import OrderListScreen from './Screens/OrderListScreen'
 
 
 
-
-
-
-
-
-
 const App = () => {
   return (
     <Router>

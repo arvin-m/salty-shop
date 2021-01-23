@@ -47,38 +47,34 @@ const OrderScreen = ({ match, history }) => {
 
 
     useEffect(() => {
-        if(!userInfo){
-            history.push('/login')
+        if (!userInfo) {
+          history.push('/login')
         }
-        
-        const addPaypalScript = async () => {
-            const { data: clientId } = await axios.get('/api/config/paypal')
-            
-            const script = document.createElement('script')
-            script.type = 'text/javascript'
-            script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
-            script.async = true
-            script.onload = () => {
-                setSdkReady(true)
-            }
-            document.body.appendChild(script)
-
-
+    
+        const addPayPalScript = async () => {
+          const { data: clientId } = await axios.get('/api/config/paypal')
+          const script = document.createElement('script')
+          script.type = 'text/javascript'
+          script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
+          script.async = true
+          script.onload = () => {
+            setSdkReady(true)
+          }
+          document.body.appendChild(script)
         }
-
+    
         if (!order || successPay || successDeliver) {
-            dispatch({type:ORDER_PAY_RESET})
-            dispatch({type:ORDER_DELIVER_RESET})
-            dispatch(getOrderDetails(orderId))
-
+          dispatch({ type: ORDER_PAY_RESET })
+          dispatch({ type: ORDER_DELIVER_RESET })
+          dispatch(getOrderDetails(orderId))
         } else if (!order.isPaid) {
-            if (!window.paypal) {
-                addPaypalScript()
-            } else {
-                setSdkReady(true)
-            }
+          if (!window.paypal) {
+            addPayPalScript()
+          } else {
+            setSdkReady(true)
+          }
         }
-    }, [dispatch, orderId, successPay, order,successDeliver,history,userInfo])
+      }, [dispatch, orderId, successPay, successDeliver, order])
 
 
     const successPaymentHandler = (paymentResult) => {
